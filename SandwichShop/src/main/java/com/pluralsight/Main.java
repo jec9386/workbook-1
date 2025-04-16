@@ -8,16 +8,16 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         //Prompt for size of sandwich
-        System.out.print("What size sandwich do you want? Regular($5.45) or Larger($8.95): ");
+        System.out.print("What size sandwich do you want?\nRegular($5.45)\nLarge($8.95)\n Please select (regular/large): ");
         String size = scanner.nextLine();
 
-        double price = 0.0;
+        double subTotal = 0.0;
 
         //if else statement for sizes
         if (size.equalsIgnoreCase("regular")) {
-            price = 5.45;
+            subTotal = 5.45;
         } else if (size.equalsIgnoreCase("large")) {
-            price = 8.95;
+            subTotal = 8.95;
         } else {
             System.out.println("Invalid size entered.");
             System.exit(0);
@@ -29,15 +29,15 @@ public class Main {
         String loaded = scanner.nextLine();
         if(loaded.equalsIgnoreCase("Yes")){
             if (size.equalsIgnoreCase("regular")){
-                price += 1.00;
+                subTotal += 1.00;
             }
             else{
-                price +=1.75;
+                subTotal += 1.75;
             }
             System.out.println("Sandwich is loaded!");
-        }else{
-            System.out.println("Sandwich is not loaded.");
-        }
+            }else{
+                System.out.println("Sandwich is not loaded.");
+            }
 
 /*
         //Prompt user for size and add the cost to price
@@ -77,18 +77,34 @@ public class Main {
         int age = scanner.nextInt();
 
         //if else for student and seniors discount
+        double discountPercent;
+        String discountType;
 
         if (age <= 17){
-            System.out.println("Discounted price: $" + String.format("%.2f", price * .90));
+            discountPercent = 0.10;
+            discountType = "Student";
+            //System.out.println("Discounted price: $" + String.format("%.2f", price * .90));
         }
         else if (age >= 65){
-            System.out.println("Discounted price: $" + String.format("%.2f", price * .80));
+            discountPercent = 0.20;
+            discountType = "Senior";
+            //System.out.println("Discounted price: $" + String.format("%.2f", price * .80));
         }else {
-            System.out.println("Sorry no discount final price is: $" + String.format("%.2f", price));
+            discountPercent = 0;
+            discountType = "";
+            //System.out.println("Sorry no discount final price is: $" + String.format("%.2f", price));
         }
 
+        double total = subTotal * (1 - discountPercent);
 
 
+        //display the final price
+        if(discountType.equalsIgnoreCase("")){
+            System.out.printf("Final price is $%.2f", total);
+        }
+        else {
+            System.out.printf("You qualify for a %f %.2f discount. Final price is $%.2f", discountPercent, discountType, total );
+        }
 
     }
 }
