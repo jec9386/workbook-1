@@ -9,22 +9,41 @@ public class Payroll {
 
         Scanner scanner = new Scanner(System.in);
 
-        //Get the known values.
+        // Create Input for employee name.
         System.out.print("Please enter the employee name: ");
         String name = scanner.nextLine();
-
+        // Create Input for employee to enter hours worked this period.
         System.out.print("Please enter hours worked this period: ");
         float hoursWorked = scanner.nextFloat();
-
+        // Input for there base pay rate.
         System.out.print("Please enter base payrate: $ ");
         double payRate = scanner.nextDouble();
 
 
-        //Calculate the unknown
-        double grossPay = hoursWorked * payRate;
+        //40 hours is the normal work hours.
+        double regularHours = 40;
 
-        //Display the results
-        System.out.printf("%S worked hours at a rate of %f and made $%f",name,hoursWorked,payRate);
+        //Calculate the basePay for this period. multiply hoursWorked with payRate.
+        double basePay = hoursWorked * payRate;
+
+        //overtime + overtimePay
+        double overtimeHours = hoursWorked- regularHours;
+        double overtimePay = overtimeHours * payRate * 1.5;
+
+        double totalPay;
+        //if they worked overtime
+        if(hoursWorked > 40){
+            totalPay = basePay + overtimePay;
+            System.out.printf("%S worked %.1f hours at a rate of %.2f/hr,and has %.1f hours overtime pay.\nTotal period pay is: $%.2f",name,hoursWorked,payRate,overtimeHours,basePay);
+
+        } else {
+            totalPay = basePay;
+            System.out.printf("%S worked %.1f hours at a rate of $%.2f/hr.\nTotal period pay is $%.2f.", name, hoursWorked,payRate,basePay);
+        }
+
+
+        //Display the results. You want name, hours worked, and how much they made.
+
     }
 }
 
