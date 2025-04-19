@@ -32,7 +32,7 @@ public class Payroll {
 
         double totalPay;
         //if they worked overtime
-        if(hoursWorked > 40){
+        if(hoursWorked >= 40){
             totalPay = basePay + overtimePay;
             System.out.printf("%S worked %.1f hours at a rate of %.2f/hr,and has %.1f hours overtime pay.\nTotal period pay is: $%.2f",name,hoursWorked,payRate,overtimeHours,basePay);
 
